@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+UNAME_M=$(uname -m)
+HOST=$(uname | tr '[:upper:]' '[:lower:]')
+LLVM_VERSION=0.0
+asan=0
+component=static_library
+uv_library=static_library
+v8_enable_i18n_support=1
+v8_optimized_debug=1
+
+if type clang > /dev/null; then
+LLVM_VERSION=$(clang --version | grep -Eo '(?:clang version|based on LLVM) ([0-9]+.[0-9]+)' | rev | cut -d' ' -f1 | rev)
+fi
+
+if [ -d ./out ]; then
+  rm -rf ./out
+fi
+
+if [ "${UNAME_M}" = 'x86_64' ]; then
+  DESTCPU=x64
+elif [ "${UNAME_M}" = 'amd64' ]; then
+  DESTCPU=x64
+elif [ "${UNAME_M}" = 'aarch64' ]; then
+  DESTCPU=arm64
+fi
+
+if [ "${DESTCPU}" = 'x64' ]; then
+  ARCH=x64
+elif [ "${DESTCPU}" = "arm64" ]; then
+  ARCH=arm64
+fi
+
+python=$(which python3)
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    # build configurations
+    --component)
+      component=$2
+      shift
+      ;;
+    --enable-asan)
+      asan=1
+      ;;
+    --uv-library)
+      uv_library=$2
+      shift
+      ;;
+    --v8-disnable-i18n-support)
+      v8_enable_i18n_support=0
+      ;;
+    --v8-disable-optimized-debug)
+      v8_optimized_debug=0
+      ;;
+  esac
+  shift
+done
+
+cat > ./config.gypi <<- EOM
+{
+  'variables': {
+    'asan': ${asan},
+    'component': '${component}',
+    'host_arch': '${HOST}',
+    'llvm_version': '${LLVM_VERSION}',
+    'target_arch': '${ARCH}',
+    'uv_library': '${uv_library}',
+    'v8_enable_i18n_support': ${v8_enable_i18n_support},
+    'v8_optimized_debug': ${v8_optimized_debug},
+    'python': '${python}',
+  }
+}
+EOM

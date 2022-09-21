@@ -1,0 +1,14 @@
+.tmp
+node_modules
+out
+toolchains/node*
+toolchains/npm
+toolchains/protoc
+
+config.gypi
+
+core
+*.dmp
+*.dmp-addon
+
+package-lock.json
