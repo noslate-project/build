@@ -1,7 +1,7 @@
 {
   'variables': {
     'noslate_root_dir': '../',
-    'noslate_alice_dir': '<(noslate_root_dir)/alice',
+    'noslate_noslated_dir': '<(noslate_root_dir)/noslated',
     'noslate_aworker_dir': '<(noslate_root_dir)/aworker',
     'noslate_build_dir': '<(noslate_root_dir)/build',
     'noslate_libyuv_dir': '<(noslate_root_dir)/libyuv',
