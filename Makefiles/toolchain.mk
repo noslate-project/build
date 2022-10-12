@@ -12,7 +12,6 @@ V ?= 0
 TOOLCHAIN_NODE_VERSION ?= 16.15.1
 
 include $(MAKEFILES_DIR)/platform.mk
-include $(MAKEFILES_DIR)/arch.mk
 
 TEMP_DIR = $(BUILD_PROJ_DIR)/.tmp
 TOOLCHAINS_DIR = $(BUILD_PROJ_DIR)/toolchains
