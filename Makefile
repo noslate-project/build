@@ -65,6 +65,7 @@ out/Makefile out/$(BUILDTYPE)/build.ninja: $(GYP_FILE) $(GYP_FILES) $(BUILD_PROJ
 		-Icommon.gypi \
 		-Iconfig.gypi \
 		-f$(GENERATOR) \
+		-Dbuild_type=$(BUILDTYPE) \
 		$(GYP_FILE)
 	$(GYP) \
 		--depth=.. \
@@ -76,6 +77,7 @@ out/Makefile out/$(BUILDTYPE)/build.ninja: $(GYP_FILE) $(GYP_FILES) $(BUILD_PROJ
 		-Icommon.gypi \
 		-Iconfig.gypi \
 		-fcompile_commands_json \
+		-Dbuild_type=$(BUILDTYPE) \
 		$(GYP_FILE)
 
 .PHONY: clean clean-dist
