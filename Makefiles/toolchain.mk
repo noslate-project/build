@@ -109,6 +109,7 @@ $(TOOLCHAINS_DIR)/protoc/out/Makefile $(TOOLCHAINS_DIR)/protoc/out/Release/build
 		-Icommon.gypi \
 		-Iconfig.gypi \
 		-f$(GENERATOR) \
+		-Dbuild_type=$(BUILDTYPE) \
 		gypfiles/protobuf.gyp
 
 ifeq ($(GENERATOR), make)
