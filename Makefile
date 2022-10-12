@@ -2,7 +2,6 @@ BUILDTYPE ?= Release
 all: build
 
 include ./Makefiles/platform.mk
-include ./Makefiles/arch.mk
 include ./Makefiles/toolchain.mk
 
 GYP_FILE=noslate.gyp
