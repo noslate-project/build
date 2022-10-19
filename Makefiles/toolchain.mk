@@ -9,7 +9,7 @@ toolchains/debug:
 
 PYTHON ?= python3
 V ?= 0
-TOOLCHAIN_NODE_VERSION ?= 16.15.1
+TOOLCHAIN_NODE_VERSION ?= 18.10.0
 
 include $(MAKEFILES_DIR)/platform.mk
 
@@ -27,7 +27,7 @@ TOOLCHAIN_PROTOC = $(TOOLCHAINS_DIR)/protoc/protoc
 BUILD_NODE_MODULES = $(BUILD_PROJ_DIR)/node_modules
 BUILD_NODE_MODULES_BIN = $(BUILD_NODE_MODULES)/.bin
 
-GYP=$(REPO_ROOT)/vendor/gyp-next/gyp
+GYP=$(REPO_ROOT)/vendor/gyp-next/gyp_main.py
 CPPLINT=$(REPO_ROOT)/vendor/cpplint/cpplint.py
 ESLINT=$(BUILD_NODE_MODULES_BIN)/eslint
 TYPEDOC=$(BUILD_NODE_MODULES_BIN)/typedoc
@@ -67,6 +67,8 @@ $(TOOLCHAINS_DIR):
 	mkdir -p $(TOOLCHAINS_DIR)
 	mkdir -p $(TOOLCHAIN_NPM_PREFIX)
 
+.PHONY: toolchains/node
+toolchains/node: $(TOOLCHAIN_NODE_BIN)
 $(TOOLCHAIN_NODE_BIN): | $(TEMP_DIR) $(TOOLCHAINS_DIR)
 	@if [ "$(shell $(TOOLCHAIN_NODE_BIN) --version 2> /dev/null)" != 'v$(TOOLCHAIN_NODE_VERSION)' ]; then \
 		$(RM) -r $(TOOLCHAINS_DIR)/node; \
@@ -101,7 +103,7 @@ $(TOOLCHAINS_DIR)/protoc/out/Makefile $(TOOLCHAINS_DIR)/protoc/out/Release/build
 	$(BUILD_PROJ_DIR)/common.gypi \
 	$(BUILD_PROJ_DIR)/config.gypi \
 	$(BUILD_PROJ_DIR)/gypfiles/protobuf.gyp
-	cd $(BUILD_PROJ_DIR); $(GYP) \
+	cd $(BUILD_PROJ_DIR); $(PYTHON) $(GYP) \
 		--depth=.. \
 		--generator-output=./build/toolchains/protoc/out \
 		-Goutput_dir=. \

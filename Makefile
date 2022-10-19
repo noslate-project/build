@@ -55,7 +55,7 @@ node-prepare:
 
 configure: | out/$(BUILDTYPE)/build.ninja
 out/Makefile out/$(BUILDTYPE)/build.ninja: $(GYP_FILE) $(GYP_FILES) $(BUILD_PROJ_DIR)/config.gypi | node-prepare
-	$(GYP) \
+	$(PYTHON) $(GYP) \
 		--depth=.. \
 		--generator-output=./build/out \
 		-Goutput_dir=. \
@@ -67,7 +67,7 @@ out/Makefile out/$(BUILDTYPE)/build.ninja: $(GYP_FILE) $(GYP_FILES) $(BUILD_PROJ
 		-f$(GENERATOR) \
 		-Dbuild_type=$(BUILDTYPE) \
 		$(GYP_FILE)
-	$(GYP) \
+	$(PYTHON) $(GYP) \
 		--depth=.. \
 		--generator-output=./build/out \
 		-Goutput_dir=./out \
