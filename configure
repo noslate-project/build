@@ -23,6 +23,11 @@ elif [ "${UNAME_M}" = 'amd64' ]; then
   DESTCPU=x64
 elif [ "${UNAME_M}" = 'aarch64' ]; then
   DESTCPU=arm64
+elif [ "${UNAME_M}" = 'arm64' ]; then
+  DESTCPU=arm64
+else
+  echo "DESTCPU not regonized."
+  exit 1
 fi
 
 if [ "${DESTCPU}" = 'x64' ]; then

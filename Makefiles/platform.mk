@@ -12,6 +12,12 @@ DESTCPU ?= x64
 else
 ifeq ($(findstring aarch64,$(UNAME_M)),aarch64)
 DESTCPU ?= arm64
+else
+ifeq ($(findstring arm64,$(UNAME_M)),arm64)
+DESTCPU ?= arm64
+else
+$(error DESTCPU not recognized)
+endif
 endif
 endif
 endif
