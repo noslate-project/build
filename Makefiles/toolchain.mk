@@ -9,7 +9,7 @@ toolchains/debug:
 
 PYTHON ?= python3
 V ?= 0
-TOOLCHAIN_NODE_VERSION ?= 18.10.0
+TOOLCHAIN_NODE_VERSION ?= 16.18.1
 
 include $(MAKEFILES_DIR)/platform.mk
 
