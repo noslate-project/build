@@ -34,7 +34,7 @@ build: noslate turf paths
 	cp -r $(foreach product,$(ARCHIVE_TURF_PRODUCTS),../turf/build/$(product)) ../out/bin
 	cd ../out; \
 		$(TOOLCHAIN_NPM_BIN) install --production --nodedir=$(REPO_ROOT)/node; \
-		tar -czf archives/noslate-$(PLATFORM)-$(UNAME_M)-$${BUILD_ID:=trunk}.tar.gz $(ARCHIVE_PATHS);
+		tar -czf archives/noslate-$(PLATFORM)-$(UNAME_M)-v$(shell $(TOOLCHAIN_NODE_BIN) tools/package-json-version.js ../noslated).tar.gz $(ARCHIVE_PATHS);
 
 .PHONY: noslate $(TARGETS) $(DEBUG_TARGETS)
 noslate $(TARGETS): BUILDTYPE=Release
