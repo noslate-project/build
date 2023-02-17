@@ -13,7 +13,7 @@
       },
       'dependencies': [
         '<(noslate_brotli_gyp):brotli',
-        '<(noslate_cares_gyp):cares',
+        # '<(noslate_cares_gyp):cares',
         '<(noslate_nghttp2_gyp):nghttp2',
         # Version not supported by curl
         # '<(noslate_ngtcp2_gyp):nghttp3',
@@ -25,7 +25,9 @@
         'BUILDING_LIBCURL=1',
         'CURL_STATICLIB=1',
         # features
-        'USE_ARES=1',
+        # c-ares getaddrinfo hang: AONE#47819325
+        # 'USE_ARES=1',
+        'USE_THREADS_POSIX=1',
         'USE_NGHTTP2=1',
         # Version not supported by curl
         # 'USE_NGHTTP3=1',
