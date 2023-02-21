@@ -48,9 +48,9 @@ git commit -m "$COMMIT_MSG" "${COMMIT_ARGS[@]}"
 if [ "$PUSH" = "true" ]; then
 repo forall -g base -c """
 set -ex
-git push origin $VERSION
+git push -u origin $VERSION
 """
-git push origin $BRANCH
+git push -u origin $BRANCH
 fi
 
 cd -
