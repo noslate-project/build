@@ -44,6 +44,12 @@
             'HAVE_MSG_NOSIGNAL=1',
           ],
         }],
+        ['OS == "mac"', {
+          'all_dependent_settings': {
+            # USE_THREADS_POSIX requires SystemConfiguration
+            'libraries': [ '-framework SystemConfiguration' ],
+          },
+        }],
       ],
       'include_dirs': [
         './curl',
