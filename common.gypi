@@ -53,11 +53,15 @@
           },
         }
       ],
+      [ 'OS in "linux freebsd openbsd solaris android aix os400 cloudabi"', {
+        'cflags_cc!': [ '-std=gnu++14' ],
+        'cflags_cc': [ '-std=gnu++17' ],
+      }],
       [
         'clang==1', {
           'xcode_settings': {
             'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
-            'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',  # -std=c++17
+            'CLANG_CXX_LANGUAGE_STANDARD': 'gnu++17',  # -std=gnu++17
             'CLANG_CXX_LIBRARY': 'libc++',
           }
         }
