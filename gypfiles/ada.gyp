@@ -66,6 +66,9 @@
         'include_dirs': ['<(ada_dir)/singleheader'],
       },
       'sources': [ '<@(ada_singleheader)' ],
+      'dependencies': [
+        'ada_singleheader',
+      ],
       'conditions': [
         ['v8_enable_i18n_support==0', {
           'defines': ['ADA_HAS_ICU=0'],
