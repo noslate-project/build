@@ -50,7 +50,7 @@ repo forall -g base -c """
 set -ex
 git push -u origin $VERSION
 """
-git push -u origin $BRANCH
+git push -u origin $VERSION
 fi
 
 cd -
