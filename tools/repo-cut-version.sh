@@ -32,7 +32,7 @@ fi
 
 COMMIT_MSG="Working on $VERSION"
 
-repo forall -g base -c """
+repo forall --verbose -g base -c """
 set -ex
 pwd
 git checkout -b $VERSION
@@ -46,7 +46,7 @@ git add default.xml
 git commit -m "$COMMIT_MSG" "${COMMIT_ARGS[@]}"
 
 if [ "$PUSH" = "true" ]; then
-repo forall -g base -c """
+repo forall --verbose -g base -c """
 set -ex
 git push -u origin $VERSION
 """
