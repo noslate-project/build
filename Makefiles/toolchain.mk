@@ -15,7 +15,7 @@ include $(MAKEFILES_DIR)/platform.mk
 
 TEMP_DIR = $(BUILD_PROJ_DIR)/.tmp
 TOOLCHAINS_DIR = $(BUILD_PROJ_DIR)/toolchains
-NODEJS_MIRROR = https://cdn.npm.taobao.org/dist/node
+NODEJS_MIRROR = https://cdn.npmmirror.com/binaries/node
 TOOLCHAIN_NODE_FULL_NAME = node-v$(TOOLCHAIN_NODE_VERSION)-$(PLATFORM)-$(ARCH)
 TOOLCHAIN_NODE_BIN_DIRECTORY = $(TOOLCHAINS_DIR)/node/bin
 TOOLCHAIN_NODE_BIN = $(TOOLCHAIN_NODE_BIN_DIRECTORY)/node
